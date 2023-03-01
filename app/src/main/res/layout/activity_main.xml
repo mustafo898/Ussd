@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <include
+        android:id="@+id/toolbar_back"
+        layout="@layout/toolbar_back" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:navGraph="@navigation/main_graph" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <me.ibrahimsn.lib.SmoothBottomBar
+            android:id="@+id/bottomNav"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="24dp"
+            android:elevation="10dp"
+            app:backgroundColor="@color/white"
+            app:iconSize="24dp"
+            app:itemFontFamily="@font/inter_600"
+            app:iconTint="@color/black"
+            app:iconTintActive="@color/white"
+            app:indicatorColor="@color/ucell"
+            app:indicatorRadius="25dp"
+            app:menu="@menu/bottom_nav"
+            app:textColor="@color/white"
+            app:textSize="12sp" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

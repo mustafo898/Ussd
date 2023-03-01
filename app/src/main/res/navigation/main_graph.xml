@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.ussdaplication.presentation.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_minuteFragment"
+            app:destination="@id/minuteFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_networkFragment"
+            app:destination="@id/networkFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_definitionFragment"
+            app:destination="@id/definitionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_smsFragment"
+            app:destination="@id/smsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ussdFragment"
+            app:destination="@id/ussdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/minuteFragment"
+        android:name="com.example.ussdaplication.presentation.ui.minute.MinuteFragment"
+        android:label="@string/minute"
+        tools:layout="@layout/fragment_minute" />
+    <fragment
+        android:id="@+id/networkFragment"
+        android:name="com.example.ussdaplication.presentation.ui.network.NetworkFragment"
+        android:label="@string/internet_paket"
+        tools:layout="@layout/fragment_network" />
+    <fragment
+        android:id="@+id/definitionFragment"
+        android:name="com.example.ussdaplication.presentation.ui.definition.DefinitionFragment"
+        android:label="@string/definitions"
+        tools:layout="@layout/fragment_definition" />
+    <fragment
+        android:id="@+id/smsFragment"
+        android:name="com.example.ussdaplication.presentation.ui.sms.SmsFragment"
+        android:label="@string/sms"
+        tools:layout="@layout/fragment_sms" />
+    <fragment
+        android:id="@+id/ussdFragment"
+        android:name="com.example.ussdaplication.presentation.ui.ussd.UssdFragment"
+        android:label="@string/code_ussd"
+        tools:layout="@layout/fragment_ussd" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.ussdaplication.presentation.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
