@@ -1,5 +1,6 @@
 package com.example.ussdaplication
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,15 @@ abstract class BaseFragment<VB : ViewBinding>(
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
         onViewCreate()
+    }
+
+    fun ussdToCallableUri(ussd: String): Uri? {
+        var uriString: String? = ""
+        if (!ussd.startsWith("tel:")) uriString += "tel:"
+        for (c in ussd.toCharArray()) {
+            if (c == '#') uriString += Uri.encode("#") else uriString += c
+        }
+        return Uri.parse(uriString)
     }
 
     abstract fun onViewCreate()

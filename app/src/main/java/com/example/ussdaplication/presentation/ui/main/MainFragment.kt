@@ -25,6 +25,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         App.appComponent.inject(this)
         Log.d("slsddjflskhfd", "setNews: ")
 
+        getListForRoom()
         setUpViewPager()
         setUpToolBar()
         clickOperators()
@@ -53,6 +54,73 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             it.data?.let { p ->
                 Log.d("slsddjflskhfd", "setNews: $p")
                 adapterViewPager.setList(p)
+            }
+        }
+    }
+
+    private fun getListForRoom() {
+        getMinuteType()
+        getSmsType()
+        getInternetType()
+        getUssd()
+        getTariff()
+    }
+
+    private fun getInternetType() = lifecycleScope.launchWhenStarted {
+        viewModel.getTypeI().collectLatest {
+            it.data?.let { p ->
+                if (p.isNotEmpty())
+                    p.forEach { o ->
+                        viewModel.getInternet(
+                            o._id,
+                            App.sharedPreference.operator.lowercase()
+                        )
+                    }
+
+            }
+        }
+    }
+
+    private fun getSmsType() = lifecycleScope.launchWhenStarted {
+        viewModel.getTypeS().collectLatest {
+            it.data?.let { p ->
+                if (p.isNotEmpty())
+                    p.forEach { o ->
+                        viewModel.getSms(
+                            o._id,
+                            App.sharedPreference.operator.lowercase()
+                        )
+                    }
+            }
+        }
+    }
+
+    private fun getMinuteType() = lifecycleScope.launchWhenStarted {
+        viewModel.getTypeM().collectLatest {
+            it.data?.let { p ->
+                if (p.isNotEmpty())
+                    p.forEach { o ->
+                        viewModel.getMinute(
+                            o._id,
+                            App.sharedPreference.operator.lowercase()
+                        )
+                    }
+            }
+        }
+    }
+
+    private fun getUssd() = lifecycleScope.launchWhenStarted {
+        viewModel.getUssd(App.sharedPreference.operator.lowercase()).collectLatest {
+            it.data?.let { p ->
+                Log.d("sdjfskdjfdlfhks", ": getUssd : $p")
+            }
+        }
+    }
+
+    private fun getTariff() = lifecycleScope.launchWhenStarted {
+        viewModel.getTariff(App.sharedPreference.operator.lowercase()).collectLatest {
+            it.data?.let { p ->
+                Log.d("sdjfskdjfdlfhks", ": getUssd : $p")
             }
         }
     }

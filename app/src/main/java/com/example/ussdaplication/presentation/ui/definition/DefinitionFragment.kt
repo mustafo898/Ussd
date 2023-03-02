@@ -19,6 +19,8 @@ class DefinitionFragment :
     }
 
     override fun onViewCreate() {
+        App.appComponent.inject(this)
+
         binding.list.adapter = adapter
 
         getList()

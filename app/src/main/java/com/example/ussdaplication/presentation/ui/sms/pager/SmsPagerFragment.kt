@@ -1,15 +1,13 @@
 package com.example.ussdaplication.presentation.ui.sms.pager
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.example.ussdaplication.App
 import com.example.ussdaplication.BaseFragment
 import com.example.ussdaplication.databinding.FragmentSmsPagerBinding
-import com.example.ussdaplication.presentation.ui.network.pager.NetworkPagerFragment
 import com.example.ussdaplication.presentation.ui.sms.SmsViewModel
 import com.example.ussdaplication.presentation.ui.sms.adapter.SmsAdapter
-import com.example.ussdaplication.presentation.ui.sms.adapter.SmsPagerAdapter
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -38,14 +36,23 @@ class SmsPagerFragment : BaseFragment<FragmentSmsPagerBinding>(FragmentSmsPagerB
     override fun onViewCreate() {
         App.appComponent.inject(this)
 
-        Log.d("dkspfdjj", "onViewCreate: ")
-
         binding.list.adapter = adapter
 
         arguments?.let {
             param1 =
                 it.getString(ARG_PARAM1)
                     .toString()
+        }
+
+        adapter.setItemClickListener {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = ussdToCallableUri(it.code)
+
+            try {
+                startActivity(intent)
+            } catch (e: SecurityException) {
+                e.printStackTrace()
+            }
         }
 
         lifecycleScope.launchWhenStarted {

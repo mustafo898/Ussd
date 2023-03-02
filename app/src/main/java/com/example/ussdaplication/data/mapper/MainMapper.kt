@@ -1,10 +1,12 @@
 package com.example.ussdaplication.data.mapper
 
-import com.example.ussdaplication.data.remote.dto.GetTypeDto
 import com.example.ussdaplication.data.remote.dto.ads.GetNewsDto
 import com.example.ussdaplication.data.remote.dto.internet.GetInternetDto
+import com.example.ussdaplication.data.remote.dto.internet.GetInternetTypeDto
 import com.example.ussdaplication.data.remote.dto.minute.GetMinuteDto
+import com.example.ussdaplication.data.remote.dto.minute.GetMinuteTypeDto
 import com.example.ussdaplication.data.remote.dto.sms.GetSmsDto
+import com.example.ussdaplication.data.remote.dto.sms.GetSmsTypeDto
 import com.example.ussdaplication.data.remote.dto.tarif.GetTariffDto
 import com.example.ussdaplication.data.remote.dto.ussd.GetUssdDto
 import com.example.ussdaplication.domain.ads.GetNewsModel
@@ -15,7 +17,15 @@ import com.example.ussdaplication.domain.model.sms.GetSmsModel
 import com.example.ussdaplication.domain.model.tarif.GetTariffModel
 import com.example.ussdaplication.domain.model.ussd.GetUssdModel
 
-fun GetTypeDto.toModel(): GetTypeModel {
+fun GetInternetTypeDto.toModel(): GetTypeModel {
+    return GetTypeModel(_id, createdAt, name)
+}
+
+fun GetMinuteTypeDto.toModel(): GetTypeModel {
+    return GetTypeModel(_id, createdAt, name)
+}
+
+fun GetSmsTypeDto.toModel(): GetTypeModel {
     return GetTypeModel(_id, createdAt, name)
 }
 

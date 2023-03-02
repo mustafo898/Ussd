@@ -6,10 +6,11 @@ import android.telephony.TelephonyManager
 import com.droidnet.DroidNet
 import com.example.ussdaplication.di.component.AppComponent
 import com.example.ussdaplication.di.component.DaggerAppComponent
-import com.example.ussdaplication.utils.SharedPreference
 import com.example.ussdaplication.di.module.ApiServiceModule
+import com.example.ussdaplication.di.module.DatabaseModule
 import com.example.ussdaplication.di.module.NetworkModule
 import com.example.ussdaplication.di.module.RepositoryModule
+import com.example.ussdaplication.utils.SharedPreference
 
 class App : Application() {
 
@@ -36,6 +37,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .repositoryModule(RepositoryModule())
             .apiServiceModule(ApiServiceModule())
+            .databaseModule(DatabaseModule(this))
             .networkModule(NetworkModule(this))
             .build()
 

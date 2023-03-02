@@ -1,6 +1,11 @@
 package com.example.ussdaplication.data.remote.dto.tarif
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "tariff")
 data class GetTariffDto(
+    @PrimaryKey
     val _id: String,
     val code: String,
     val company: String,

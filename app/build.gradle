@@ -97,6 +97,12 @@ dependencies {
     //dexter permission
     implementation 'com.karumi:dexter:6.2.3'
 
+    def room_version = "2.3.0"
+    //Room
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     //paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
 

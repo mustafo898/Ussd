@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -60,29 +59,17 @@ class NetworkPagerFragment :
         }
 
         getInternet(param1)
-        getNews()
 
         adapter.setItemClickListener {
-
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = ussdToCallableUri(it.code)
+
             try {
                 startActivity(intent)
             } catch (e: SecurityException) {
                 e.printStackTrace()
             }
-
-//            active(it.code)
         }
-    }
-
-    private fun ussdToCallableUri(ussd: String): Uri? {
-        var uriString: String? = ""
-        if (!ussd.startsWith("tel:")) uriString += "tel:"
-        for (c in ussd.toCharArray()) {
-            if (c == '#') uriString += Uri.encode("#") else uriString += c
-        }
-        return Uri.parse(uriString)
     }
 
     private fun getInternet(id: String) = lifecycleScope.launchWhenStarted {
@@ -90,50 +77,6 @@ class NetworkPagerFragment :
             it.data?.let { p ->
                 adapter.setList(p)
             }
-        }
-    }
-
-    private fun getNews() = lifecycleScope.launchWhenStarted {
-        viewModel.getNews(App.sharedPreference.operator.lowercase()).collectLatest {
-            it.data?.let { p ->
-                Log.d("sldjfsjdofhdjfh", "getNews: $$p")
-//                adapter.setList(p)
-            }
-        }
-    }
-
-    private fun active(code: String) {
-        val manager =
-            requireActivity().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-
-
-        dialog.setVisible(true)
-        dialog.show()
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (ActivityCompat.checkSelfPermission(
-                    requireActivity(), Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return
-            }
-
-            manager.sendUssdRequest(code, object : TelephonyManager.UssdResponseCallback() {
-                override fun onReceiveUssdResponse(
-                    telephonyManager: TelephonyManager, request: String, response: CharSequence
-                ) {
-                    dialog.setText(response.toString())
-                    dialog.setVisible(false)
-                }
-
-                override fun onReceiveUssdResponseFailed(
-                    telephonyManager: TelephonyManager, request: String, failureCode: Int
-                ) {
-
-                    dialog.dismiss()
-                    Toast.makeText(context, "$failureCode", Toast.LENGTH_SHORT).show()
-                }
-            }, Handler())
         }
     }
 }

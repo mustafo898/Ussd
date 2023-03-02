@@ -1,11 +1,13 @@
 package com.example.ussdaplication.data.remote
 
-import com.example.ussdaplication.data.remote.dto.GetTypeDto
 import com.example.ussdaplication.data.remote.dto.MainResponseDto
 import com.example.ussdaplication.data.remote.dto.ads.GetNewsDto
 import com.example.ussdaplication.data.remote.dto.internet.GetInternetDto
+import com.example.ussdaplication.data.remote.dto.internet.GetInternetTypeDto
 import com.example.ussdaplication.data.remote.dto.minute.GetMinuteDto
+import com.example.ussdaplication.data.remote.dto.minute.GetMinuteTypeDto
 import com.example.ussdaplication.data.remote.dto.sms.GetSmsDto
+import com.example.ussdaplication.data.remote.dto.sms.GetSmsTypeDto
 import com.example.ussdaplication.data.remote.dto.tarif.GetTariffDto
 import com.example.ussdaplication.data.remote.dto.ussd.GetUssdDto
 import retrofit2.Response
@@ -16,7 +18,7 @@ import retrofit2.http.Query
 interface MainApiService {
 
     @GET("internet/type/all")
-    suspend fun getInternetType(): Response<MainResponseDto<List<GetTypeDto>>>
+    suspend fun getInternetType(): Response<MainResponseDto<List<GetInternetTypeDto>>>
 
     @GET("internet/all/{id}")
     suspend fun getInternet(
@@ -25,7 +27,7 @@ interface MainApiService {
     ): Response<MainResponseDto<List<GetInternetDto>>>
 
     @GET("minute/type/all")
-    suspend fun getMinuteType(): Response<MainResponseDto<List<GetTypeDto>>>
+    suspend fun getMinuteType(): Response<MainResponseDto<List<GetMinuteTypeDto>>>
 
     @GET("minute/all/{id}")
     suspend fun getMinute(
@@ -35,7 +37,7 @@ interface MainApiService {
 
 
     @GET("sms/type/all")
-    suspend fun getSmsType(): Response<MainResponseDto<List<GetTypeDto>>>
+    suspend fun getSmsType(): Response<MainResponseDto<List<GetSmsTypeDto>>>
 
     @GET("sms/all/{id}")
     suspend fun getSms(

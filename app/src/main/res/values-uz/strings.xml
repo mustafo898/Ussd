@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">Ussd Aplication</string>
+    <string name="app_name">Ussd Ilova</string>
     <string name="operator">Operator</string>
     <string name="settings">Sozlamalar</string>
     <string name="home">Bosh sahifa</string>
 
-    <string name="no_simcard">В вашем телефоне нет SIM-карты %1$s</string>
+    <string name="no_simcard">Telefoningizda unday SIM-karta yoq %1$s</string>
 
     <string name="permission_yes">Ruhsat berilmadi</string>
     <string name="permission_no">Ruhsat berildi</string>
     <string name="minute">Daqiqalar</string>
     <string name="internet">Internet</string>
     <string name="sms">SMS to’plamlar</string>
-    <string name="tarif">Tariflar</string>
+    <string name="tarif">Ta\'riflar</string>
     <string name="code_ussd">USSD kodlar</string>
     <string name="service">Xizmatlar</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -25,10 +25,10 @@
     <string name="internet_paket">Internet to\'plamlar</string>
     <string name="see">Ko\'rish</string>
     <string name="definitions">Ta\'riflar</string>
-    <string name="money">%1$s сум</string>
+    <string name="money">%1$s sum</string>
     <string name="paket">Paket %1$s</string>
-<!--    <string name="tariff">%1$s</string>-->
+    <!--    <string name="tariff">%1$s</string>-->
     <string name="duration">Muddat %1$s</string>
-    <string name="code">Code : %1$s</string>
+    <string name="code">Kod : %1$s</string>
 
 </resources>

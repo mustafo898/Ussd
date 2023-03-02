@@ -16,7 +16,7 @@ class MinutePagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return MinutePagerFragment()
+        return MinutePagerFragment.newInstance(list[position])
     }
 
 }

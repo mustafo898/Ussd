@@ -40,7 +40,6 @@ class NetworkFragment : BaseFragment<FragmentNetworkBinding>(FragmentNetworkBind
             it.data?.let { p ->
                 Log.d("sdklflhf", "getType: $p")
                 setViewPager(p)
-                getInternet(p.first()._id)
             }
         }
     }

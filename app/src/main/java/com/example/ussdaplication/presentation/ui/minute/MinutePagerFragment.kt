@@ -1,80 +1,73 @@
 package com.example.ussdaplication.presentation.ui.minute
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Handler
-import android.telephony.TelephonyManager
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
+import android.content.Intent
+import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
+import com.example.ussdaplication.App
 import com.example.ussdaplication.BaseFragment
 import com.example.ussdaplication.databinding.FragmentMinutePagerBinding
 import com.example.ussdaplication.presentation.ui.dialog.ResponseDialog
 import com.example.ussdaplication.presentation.ui.minute.adapter.MinuteAdapter
+import kotlinx.coroutines.flow.collectLatest
+import javax.inject.Inject
+
+private const val ARG_PARAM1 = "param1"
 
 class MinutePagerFragment :
     BaseFragment<FragmentMinutePagerBinding>(FragmentMinutePagerBinding::inflate) {
+
+    private var param1: String = ""
+
     private val adapter by lazy {
         MinuteAdapter(requireContext())
     }
+
+    @Inject
+    lateinit var viewModel: MinuteViewModel
 
     private val dialog by lazy {
         ResponseDialog(requireContext())
     }
 
-    override fun onViewCreate() {
-        binding.list.adapter = adapter
-        val l = mutableListOf<String>()
-        for (i in 0 until 15) {
-            l.add("L")
-        }
-
-        adapter.setList(l)
-
-        adapter.setItemClickListener {
-//            active("*100#")
-
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String) = MinutePagerFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+            }
         }
     }
 
-    private fun active(code: String) {
-        val manager =
-            requireActivity().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+    override fun onViewCreate() {
+        App.appComponent.inject(this)
 
+        arguments?.let {
+            param1 =
+                it.getString(ARG_PARAM1)
+                    .toString()
+        }
 
-        dialog.setVisible(true)
-        dialog.show()
+        binding.list.adapter = adapter
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (ActivityCompat.checkSelfPermission(
-                    requireActivity(),
-                    Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return
+        getMinute(param1)
+
+        adapter.setItemClickListener {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = ussdToCallableUri(it.code)
+
+            try {
+                startActivity(intent)
+            } catch (e: SecurityException) {
+                e.printStackTrace()
             }
+        }
+    }
 
-            manager.sendUssdRequest(code, object : TelephonyManager.UssdResponseCallback() {
-                override fun onReceiveUssdResponse(
-                    telephonyManager: TelephonyManager,
-                    request: String,
-                    response: CharSequence
-                ) {
-                    dialog.setText(response.toString())
-                    dialog.setVisible(false)
-                }
-
-                override fun onReceiveUssdResponseFailed(
-                    telephonyManager: TelephonyManager,
-                    request: String,
-                    failureCode: Int
-                ) {
-
-                    dialog.dismiss()
-                    Toast.makeText(context, "$failureCode", Toast.LENGTH_SHORT).show()
-                }
-            }, Handler())
+    private fun getMinute(id: String) = lifecycleScope.launchWhenStarted {
+        viewModel.getMinute(id, App.sharedPreference.operator.lowercase()).collectLatest {
+            it.data?.let { p ->
+                adapter.setList(p)
+            }
         }
     }
 }

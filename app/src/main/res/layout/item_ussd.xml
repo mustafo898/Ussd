@@ -63,7 +63,7 @@
             android:layout_marginEnd="@dimen/margin_16dp"
             android:layout_marginBottom="@dimen/margin_24dp"
             android:fontFamily="@font/inter_600"
-            android:text="*100#"
+            android:text="@string/code"
             android:textColor="@color/sub_label"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"

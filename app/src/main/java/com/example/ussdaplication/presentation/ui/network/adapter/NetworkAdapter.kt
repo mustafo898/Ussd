@@ -32,10 +32,10 @@ class NetworkAdapter(private val context: Context) :
         @SuppressLint("SetTextI18n")
         fun bind(data: GetInternetModel) {
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
-            binding.txt.text = "Paket " + data.name
+            binding.txt.text = context.getString(R.string.paket, data.name)
             binding.cost.text = context.getString(R.string.money, "${data.price}")
-            binding.perM.text = data.duration
-            binding.code.text = data.code
+            binding.perM.text = context.getString(R.string.duration, data.duration)
+            binding.code.text = context.getString(R.string.code, data.code)
 
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
             binding.linear.setOnClickListener {

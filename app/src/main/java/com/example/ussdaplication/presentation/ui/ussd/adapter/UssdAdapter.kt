@@ -5,32 +5,38 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ussdaplication.App
+import com.example.ussdaplication.R
 import com.example.ussdaplication.databinding.ItemUssdBinding
+import com.example.ussdaplication.domain.model.ussd.GetUssdModel
 
 class UssdAdapter(private val context: Context) :
     RecyclerView.Adapter<UssdAdapter.ViewHolder>() {
 
-    private val list = mutableListOf<String>()
+    private val list = mutableListOf<GetUssdModel>()
 
-    fun setList(data: List<String>) {
+    fun setList(data: List<GetUssdModel>) {
         list.clear()
         list.addAll(data)
         notifyDataSetChanged()
     }
 
-    private var itemClickListener: ((id: String) -> Unit)? = null
+    private var itemClickListener: ((id: GetUssdModel) -> Unit)? = null
 
-    fun setItemClickListener(f: (id: String) -> Unit) {
+    fun setItemClickListener(f: (id: GetUssdModel) -> Unit) {
         itemClickListener = f
     }
 
     inner class ViewHolder(private val binding: ItemUssdBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: String) {
+        fun bind(data: GetUssdModel) {
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+
+            binding.txt.text = data.name
+            binding.code.text = context.getString(R.string.code, data.code)
+
             binding.linear.setOnClickListener {
-                itemClickListener?.invoke("")
+                itemClickListener?.invoke(data)
             }
         }
     }

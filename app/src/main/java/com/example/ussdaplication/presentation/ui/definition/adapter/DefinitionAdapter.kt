@@ -30,6 +30,9 @@ class DefinitionAdapter(private val context: Context) :
         fun bind(data: GetTariffModel) {
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+
+            binding.txt.text = data.name
+
             binding.linear.setOnClickListener {
                 itemClickListener?.invoke(data)
             }

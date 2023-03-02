@@ -17,7 +17,7 @@ abstract class BaseViewModel : ViewModel() {
     ): Flow<UIListState<T>> {
         val listState = MutableStateFlow(UIListState<T>())
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repositoryCall().onEach {
                 when (it) {
                     is Resource.Error -> {
