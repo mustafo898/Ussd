@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ussdaplication.App
+import com.example.ussdaplication.R
 import com.example.ussdaplication.databinding.ItemSmsBinding
 import com.example.ussdaplication.domain.model.sms.GetSmsModel
 
@@ -30,6 +31,12 @@ class SmsAdapter(private val context: Context) :
         fun bind(data: GetSmsModel) {
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+
+            binding.txt.text = context.getString(R.string.paket_1, data.name)
+            binding.cost.text = context.getString(R.string.money, "${data.price}")
+            binding.perM.text = context.getString(R.string.duration, data.duration)
+            binding.code.text = context.getString(R.string.code, data.code)
+
             binding.linear.setOnClickListener {
                 itemClickListener?.invoke(data)
             }

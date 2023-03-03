@@ -27,7 +27,9 @@
     <string name="definitions">Ta\'riflar</string>
     <string name="money">%1$s сум</string>
     <string name="paket">Paket %1$s</string>
-<!--    <string name="tariff">%1$s</string>-->
+    <string name="paket_1">%1$s sms</string>
+    <string name="paket_2">%1$s min</string>
+    <!--    <string name="tariff">%1$s</string>-->
     <string name="duration">Muddat %1$s</string>
     <string name="code">Code : %1$s</string>
 

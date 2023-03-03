@@ -1,6 +1,7 @@
 package com.example.ussdaplication
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.PopupMenu
@@ -129,5 +130,9 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.toolbar.gone()
         binding.bottom.gone()
         binding.toolbarBack.toolbar.visible()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { ControlLanguage.setLocale(it) })
     }
 }

@@ -106,6 +106,9 @@ dependencies {
     //paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
 
+    //hawk
+    implementation("com.orhanobut:hawk:2.0.1")
+
     //yo yo
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
 }

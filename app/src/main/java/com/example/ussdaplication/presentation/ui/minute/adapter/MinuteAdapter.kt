@@ -34,7 +34,7 @@ class MinuteAdapter(private val context: Context) :
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
 
-            binding.txt.text = context.getString(R.string.paket, data.company)
+            binding.txt.text = context.getString(R.string.paket_2, data.company)
             binding.cost.text = context.getString(R.string.money, "${data.price}")
             binding.code.text = context.getString(R.string.code, data.code)
 

@@ -24,27 +24,27 @@ class LanguageDialog(context: Context) :
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         when (App.sharedPreference.lang) {
-            "Uz" -> uz()
-            "Ru" -> ru()
-            "En" -> en()
+            "uz" -> uz()
+            "ru" -> ru()
+            "en" -> en()
         }
 
         binding.en.setOnClickListener {
             en()
             App.sharedPreference.lang = "en"
-            itemClickListener?.invoke(binding.en.text.toString())
+            itemClickListener?.invoke("en")
             dismiss()
         }
         binding.ru.setOnClickListener {
             ru()
             App.sharedPreference.lang = "ru"
-            itemClickListener?.invoke(binding.ru.text.toString())
+            itemClickListener?.invoke("ru")
             dismiss()
         }
         binding.uz.setOnClickListener {
             uz()
             App.sharedPreference.lang = "uz"
-            itemClickListener?.invoke(binding.uz.text.toString())
+            itemClickListener?.invoke("uz")
             dismiss()
         }
 

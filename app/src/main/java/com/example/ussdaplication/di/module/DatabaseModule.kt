@@ -18,7 +18,7 @@ class DatabaseModule(private val context: Context) {
     @Provides
     @Singleton
     fun provideAppDatabase(): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, "sample_task")
+        return Room.databaseBuilder(context, AppDatabase::class.java, "ussd_application")
             .fallbackToDestructiveMigration()
             .build()
     }

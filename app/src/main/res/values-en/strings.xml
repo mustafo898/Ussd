@@ -1,34 +1,34 @@
 <resources>
     <string name="app_name">Ussd Aplication</string>
     <string name="operator">Operator</string>
-    <string name="settings">Sozlamalar</string>
-    <string name="home">Bosh sahifa</string>
+    <string name="settings">Settings</string>
+    <string name="home">Home</string>
 
-    <string name="no_simcard">В вашем телефоне нет SIM-карты %1$s</string>
+    <string name="no_simcard">There is no SIM card in your phone %1$s</string>
 
-    <string name="permission_yes">Ruhsat berilmadi</string>
-    <string name="permission_no">Ruhsat berildi</string>
-    <string name="minute">Daqiqalar</string>
+    <string name="permission_yes">Granted </string>
+    <string name="permission_no">Permission was not given</string>
+    <string name="minute">Minutes</string>
     <string name="internet">Internet</string>
-    <string name="sms">SMS to’plamlar</string>
-    <string name="tarif">Tariflar</string>
-    <string name="code_ussd">USSD kodlar</string>
-    <string name="service">Xizmatlar</string>
+    <string name="sms">SMS packages</string>
+    <string name="tarif">Definitions</string>
+    <string name="code_ussd">USSD codes</string>
+    <string name="service">Services</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="activate">Faollashtirish</string>
-    <string name="day">Kunlik</string>
-    <string name="month">Oylik</string>
-    <string name="week">Haftalik</string>
-    <string name="hour">Soat</string>
-    <string name="minutes">Daqiqalar</string>
-    <string name="internet_paket">Internet to\'plamlar</string>
-    <string name="see">Ko\'rish</string>
-    <string name="definitions">Ta\'riflar</string>
-    <string name="money">%1$s сум</string>
+    <string name="activate">Activation</string>
+    <string name="day">Daily</string>
+    <string name="month">Monthly</string>
+    <string name="week">Weekly</string>
+    <string name="hour">Hour</string>
+    <string name="minutes">Minutes</string>
+    <string name="internet_paket">Internet packages</string>
+    <string name="see">Vision</string>
+    <string name="definitions">Definitions</string>
+    <string name="money">%1$s sum</string>
     <string name="paket">Paket %1$s</string>
     <!--    <string name="tariff">%1$s</string>-->
-    <string name="duration">Muddat %1$s</string>
+    <string name="duration">Duration : %1$s</string>
     <string name="code">Code : %1$s</string>
 
 </resources>

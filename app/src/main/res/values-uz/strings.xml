@@ -6,8 +6,8 @@
 
     <string name="no_simcard">Telefoningizda unday SIM-karta yoq %1$s</string>
 
-    <string name="permission_yes">Ruhsat berilmadi</string>
-    <string name="permission_no">Ruhsat berildi</string>
+    <string name="permission_yes">Ruhsat berildi</string>
+    <string name="permission_no">Ruhsat berilmadi</string>
     <string name="minute">Daqiqalar</string>
     <string name="internet">Internet</string>
     <string name="sms">SMS to’plamlar</string>
@@ -28,7 +28,7 @@
     <string name="money">%1$s sum</string>
     <string name="paket">Paket %1$s</string>
     <!--    <string name="tariff">%1$s</string>-->
-    <string name="duration">Muddat %1$s</string>
+    <string name="duration">Muddat : %1$s</string>
     <string name="code">Kod : %1$s</string>
 
 </resources>

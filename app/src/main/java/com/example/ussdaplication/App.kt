@@ -11,6 +11,7 @@ import com.example.ussdaplication.di.module.DatabaseModule
 import com.example.ussdaplication.di.module.NetworkModule
 import com.example.ussdaplication.di.module.RepositoryModule
 import com.example.ussdaplication.utils.SharedPreference
+import com.orhanobut.hawk.Hawk
 
 class App : Application() {
 
@@ -34,6 +35,8 @@ class App : Application() {
 
         Companion.resources = resources
 
+        Hawk.init(this).build()
+
         appComponent = DaggerAppComponent.builder()
             .repositoryModule(RepositoryModule())
             .apiServiceModule(ApiServiceModule())
@@ -46,5 +49,7 @@ class App : Application() {
         val telephonyManager = this.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val networkOperatorName = telephonyManager.networkOperatorName
         sharedPreference.operator = networkOperatorName
+
+        Hawk.put("pref_lang", sharedPreference.lang.lowercase())
     }
 }
