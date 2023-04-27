@@ -5,32 +5,51 @@ plugins {
 }
 
 android {
-    namespace 'com.example.ussdaplication'
+    namespace 'com.composer.ussdaplication'
     compileSdk 33
 
+    signingConfigs {
+        release {
+            storeFile file('jks/key.jks')
+            storePassword '0561352'
+            keyAlias 'ussd_key'
+            keyPassword '0561352'
+        }
+    }
+
     defaultConfig {
-        applicationId "com.example.ussdaplication"
+        applicationId "com.composer.ussdaplication"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def secureProps = new Properties()
+        if (file("../secure.properties").exists()) {
+            file("../secure.properties")?.withInputStream { secureProps.load(it) }
+        }
+        resValue "string", "base_url", (secureProps.getProperty("BASE_URL") ?: "")
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     viewBinding {
         enabled true
     }

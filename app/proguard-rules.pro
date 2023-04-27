@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.composer.ussdaplication.utils.**{*;}
+-keep class com.composer.ussdaplication.App
+-keep class com.composer.ussdaplication.data.remote.**{*;}
+-keep class com.composer.ussdaplication.data.mapper.**{*;}
+-keep class com.composer.ussdaplication.domain.model.**{*;}

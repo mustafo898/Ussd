@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ussd Aplication</string>
+    <string name="app_name">Ussd Pro</string>
     <string name="operator">Оператор</string>
     <string name="settings">Настройки</string>
     <string name="home">Дом</string>
@@ -26,9 +26,16 @@
     <string name="see">Посмотреть</string>
     <string name="definitions">Услуги</string>
     <string name="money">%1$s сум</string>
-    <string name="paket">Пакет %1$s</string>
+    <string name="delete">Удалить</string>
     <!--    <string name="tariff">%1$s</string>-->
     <string name="duration">Продолжительность : %1$s</string>
-    <string name="code">Код : %1$s</string>
+    <string name="code">Код активации : %1$s</string>
+    <string name="disActivateCode">Код деактивации : %1$s</string>
+    <string name="description">Oписание : </string>
+    <string name="checkLimit">Проверить лимит : %1$s</string>
+    <string name="megaBayt">%1$s мб</string>
+
+    <string name="paket_1">%1$s смс</string>
+    <string name="paket_2">%1$s мин</string>
 
 </resources>

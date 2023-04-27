@@ -18,6 +18,8 @@
     <color name="cashback">#42CA87</color>
 
     <color name="indicator">#D6D6D6</color>
+    <color name="grey1">#42BCBCBC</color>
+    <color name="red">#D71212</color>
     <color name="fragment_back">#14000000</color>
 
 </resources>

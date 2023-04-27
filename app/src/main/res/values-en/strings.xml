@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ussd Aplication</string>
+    <string name="app_name">Ussd Pro</string>
     <string name="operator">Operator</string>
     <string name="settings">Settings</string>
     <string name="home">Home</string>
@@ -26,9 +26,16 @@
     <string name="see">Vision</string>
     <string name="definitions">Definitions</string>
     <string name="money">%1$s sum</string>
-    <string name="paket">Paket %1$s</string>
+    <string name="delete">Delete</string>
     <!--    <string name="tariff">%1$s</string>-->
     <string name="duration">Duration : %1$s</string>
-    <string name="code">Code : %1$s</string>
+    <string name="code">Activation code : %1$s</string>
+    <string name="disActivateCode">Deactivation code : %1$s</string>
+    <string name="description">Description : </string>
+    <string name="checkLimit">Check limit : %1$s</string>
+    <string name="megaBayt">%1$s mb</string>
+
+    <string name="paket_1">%1$s sms</string>
+    <string name="paket_2">%1$s min</string>
 
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ussd Aplication</string>
+    <string name="app_name">Ussd Pro</string>
     <string name="operator">Operator</string>
     <string name="settings">Sozlamalar</string>
     <string name="home">Bosh sahifa</string>
@@ -17,6 +17,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="activate">Faollashtirish</string>
+    <string name="delete">O‘chirish</string>
     <string name="day">Kunlik</string>
     <string name="month">Oylik</string>
     <string name="week">Haftalik</string>
@@ -26,11 +27,14 @@
     <string name="see">Ko\'rish</string>
     <string name="definitions">Ta\'riflar</string>
     <string name="money">%1$s сум</string>
-    <string name="paket">Paket %1$s</string>
+    <string name="megaBayt">%1$s mb</string>
     <string name="paket_1">%1$s sms</string>
-    <string name="paket_2">%1$s min</string>
+    <string name="paket_2">%1$s daq</string>
     <!--    <string name="tariff">%1$s</string>-->
     <string name="duration">Muddat %1$s</string>
-    <string name="code">Code : %1$s</string>
+    <string name="code">Yoqish kodi : %1$s</string>
+    <string name="disActivateCode">O\'chirish kodi : %1$s</string>
+    <string name="checkLimit">Limitni tekshirish : %1$s</string>
+    <string name="description">Tavsifi : </string>
 
 </resources>
