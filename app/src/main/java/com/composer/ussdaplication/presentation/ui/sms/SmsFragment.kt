@@ -51,7 +51,7 @@ class SmsFragment : BaseFragment<FragmentSmsBinding>(FragmentSmsBinding::inflate
         }
 
         binding.viewPager.adapter = SmsPagerAdapter(childFragmentManager, lifecycle, idList)
-        binding.viewPager.isUserInputEnabled = false
+//        binding.viewPager.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = getCurrentLang(list[position].name)

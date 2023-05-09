@@ -52,6 +52,7 @@ class DefinitionFragment :
         var code = ""
 
         adapter.setItemClickListener {
+            dialog.setTitle(true, 1)
             code = it.code
             dialog.show()
         }
@@ -63,7 +64,7 @@ class DefinitionFragment :
     }
 
     private fun getList() = lifecycleScope.launchWhenStarted {
-        viewModel.getTariff(App.sharedPreference.operator.lowercase(), param1).collectLatest {
+        viewModel.getTariff(param1, App.sharedPreference.operator.lowercase()).collectLatest {
             it.data?.let { p ->
                 adapter.setList(p)
             }

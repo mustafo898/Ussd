@@ -28,14 +28,21 @@
     <string name="money">%1$s sum</string>
     <string name="delete">Delete</string>
     <!--    <string name="tariff">%1$s</string>-->
-    <string name="duration">Duration : %1$s</string>
+    <string name="duration">Duration : </string>
     <string name="code">Activation code : %1$s</string>
-    <string name="disActivateCode">Deactivation code : %1$s</string>
+    <string name="disActivateCode">Deactivation code : </string>
     <string name="description">Description : </string>
-    <string name="checkLimit">Check limit : %1$s</string>
+    <string name="checkLimit">Check limit : </string>
     <string name="megaBayt">%1$s mb</string>
 
     <string name="paket_1">%1$s sms</string>
     <string name="paket_2">%1$s min</string>
-
+    <string name="check">Check traffic balance : %1$s</string>
+    <string name="cost">Subscriber fee : </string>
+    <string name="want_activate">Do you want to activate?</string>
+    <string name="want_deactivate">Do you want to deactivate?</string>
+    <string name="change_tariff">Change definition?</string>
+    <string name="change_tariff_1">Change definition</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>

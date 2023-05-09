@@ -24,9 +24,9 @@ class NetworkAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    private var itemClickListener: ((id: GetInternetModel) -> Unit)? = null
+    private var itemClickListener: ((id: GetInternetModel, Boolean) -> Unit)? = null
 
-    fun setItemClickListener(f: (id: GetInternetModel) -> Unit) {
+    fun setItemClickListener(f: (id: GetInternetModel, Boolean) -> Unit) {
         itemClickListener = f
     }
 
@@ -37,33 +37,51 @@ class NetworkAdapter(private val context: Context) :
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.txt.text = getCurrentLang(data.name)
             binding.cost.text = context.getString(R.string.money, "${data.price}")
-            binding.perM.text = context.getString(R.string.duration, getCurrentLang(data.duration))
-            binding.code.text = context.getString(R.string.code, data.turnOn)
+            binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+            binding.linear2.setBackgroundColor(App.sharedPreference.operatorColor)
+            binding.perM.text = getCurrentLang(data.duration)
+            binding.code.text = data.turnOn
 
             if (data.turnOff.isNotEmpty()) {
-                binding.disActivate.text = context.getString(R.string.disActivateCode, data.turnOff)
-                binding.disActivate.visible()
-            } else
-                binding.disActivate.gone()
+                binding.disActivate.text = data.turnOff
+                binding.disActivateLine.visible()
+                binding.activate.visible()
+                binding.disActivateBtn.visible()
+                binding.activate2.gone()
+            } else {
+                binding.activate2.visible()
+                binding.activate.gone()
+                binding.disActivateBtn.gone()
+                binding.disActivateLine.gone()
+            }
 
             if (data.description != null) {
                 if (data.description._id.isNotEmpty()) {
                     binding.description.text = getCurrentLang(data.description)
                     binding.description.visible()
-                }else
+                } else
                     binding.line2.gone()
             } else
                 binding.line2.gone()
 
             if (data.checkLimit.isNotEmpty()) {
-                binding.checkLimit.visible()
-                binding.checkLimit.text = context.getString(R.string.checkLimit, data.checkLimit)
+                binding.checkLine.visible()
+                binding.checkLimit.text = data.checkLimit
             } else
-                binding.checkLimit.gone()
+                binding.checkLine.gone()
 
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+
             binding.linear.setOnClickListener {
-                itemClickListener?.invoke(data)
+                itemClickListener?.invoke(data, true)
+            }
+
+            binding.linear2.setOnClickListener {
+                itemClickListener?.invoke(data, true)
+            }
+
+            binding.linear1.setOnClickListener {
+                itemClickListener?.invoke(data, false)
             }
         }
     }

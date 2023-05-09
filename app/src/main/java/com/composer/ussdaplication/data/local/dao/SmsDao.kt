@@ -19,11 +19,8 @@ interface SmsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setSmsType(user: GetSmsTypeDb)
 
-    @Delete
-    fun deleteSmsType(user: GetSmsTypeDb)
-
-    @Query("DELETE FROM smsTypeDto")
-    fun deleteAllSmsType()
+    @Query("DELETE FROM smsTypeDto where company = :company")
+    fun deleteAllSmsType(company: String)
 
     /**  SMS type CRUD */
 
@@ -41,8 +38,9 @@ interface SmsDao {
     @Delete
     fun deleteSms(user: GetSmsDb)
 
-    @Query("DELETE FROM sms")
-    fun deleteAllSms()
+    @Query("DELETE FROM sms WHERE typeId = :id and company = :company")
+    fun deleteAllSms(id: String, company: String)
+
 
     /**  SMS type CRUD */
 }

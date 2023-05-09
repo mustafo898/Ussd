@@ -53,7 +53,7 @@ class MinuteFragment : BaseFragment<FragmentMinuteBinding>(FragmentMinuteBinding
         }
 
         binding.viewPager.adapter = MinutePagerAdapter(childFragmentManager, lifecycle, idList)
-        binding.viewPager.isUserInputEnabled = false
+//        binding.viewPager.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = getCurrentLang(list[position].name)

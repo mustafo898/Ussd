@@ -20,13 +20,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter_600"
                 android:gravity="center"
-                android:text="Faollashtirishni xoxlaysizmi?"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
@@ -74,7 +74,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/sf_pro"
                             android:paddingHorizontal="@dimen/margin_16dp"
-                            android:text="Yoq"
+                            android:text="@string/no"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
@@ -109,7 +109,6 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/sf_pro"
                             android:paddingHorizontal="@dimen/margin_16dp"
-                            android:text="@string/activate"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>

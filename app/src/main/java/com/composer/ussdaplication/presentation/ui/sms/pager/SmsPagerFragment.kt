@@ -9,6 +9,7 @@ import com.composer.ussdaplication.presentation.ui.dialog.ConfirmDialog
 import com.composer.ussdaplication.presentation.ui.sms.SmsViewModel
 import com.composer.ussdaplication.presentation.ui.sms.adapter.SmsAdapter
 import com.composer.ussdaplication.utils.activateCode
+import com.composer.ussdaplication.utils.getColor
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -48,8 +49,16 @@ class SmsPagerFragment : BaseFragment<FragmentSmsPagerBinding>(FragmentSmsPagerB
 
         var code = ""
 
-        adapter.setItemClickListener {
-            code = it.turnOn
+        binding.card.strokeColor = getColor(App.sharedPreference.operatorColor)
+
+        adapter.setItemClickListener { it, enable ->
+            dialog.setTitle(enable)
+            code = if (enable) {
+                it.turnOn
+            } else {
+                it.turnOff
+            }
+            dialog.show()
         }
 
         dialog.setActivateClickListener {

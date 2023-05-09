@@ -44,19 +44,21 @@ class MainRepositoryImpl @Inject constructor(
                     val result = response.body()
                     result?.data?.let { p ->
 
-                        internetDao.deleteAllInternetType()
-                        internetDao.setInternetType(p.map { it.toDbModel() })
-
-                        Log.d(
-                            "loggggggg",
-                            "getInternetType: ${
-                                internetDao.getInternetType(company).map { it.toModel() }
-                            }"
+                        emit(
+                            Resource.Success(internetDao.getInternetType(company)
+                                .map { it.toModel() })
                         )
 
+                        internetDao.deleteAllInternetType(company)
+                        internetDao.setInternetType(p.map { it.toDbModel() })
+
+                        Log.d("loggggggg", "getInternetType: ${
+                            internetDao.getInternetType(company).map { it.toModel() }
+                        }")
+
                         emit(
-                            Resource.Success(
-                                internetDao.getInternetType(company).map { it.toModel() })
+                            Resource.Success(internetDao.getInternetType(company)
+                                .map { it.toModel() })
                         )
                     }
                 } else {
@@ -87,6 +89,26 @@ class MainRepositoryImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun getInternetTypeDb(company: String): Flow<Resource<List<GetTypeModel>>> =
+        loadResult({ mainApiService.getInternetType(company) }, { data, flow ->
+
+            internetDao.deleteAllInternetType(company)
+            internetDao.setInternetType(data.map { it.toDbModel() })
+
+            Log.d(
+                "impl____1",
+                "getInternetTypeDb --> 2: ${internetDao.getInternetType(company).map { it.toModel() }}"
+            )
+
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d(
+                "impl____1",
+                "getInternetTypeDb --> 1: ${internetDao.getInternetType(company).map { it.toModel() }}"
+            )
+            flow.emit(Resource.Success(internetDao.getInternetType(company).map { it.toModel() }))
+        })
 
     override suspend fun getInternet(
         id: String, company: String
@@ -102,11 +124,17 @@ class MainRepositoryImpl @Inject constructor(
                     val result = response.body()
                     result?.data?.let { p ->
 
-                        internetDao.deleteAllInternet()
+                        internetDao.deleteAllInternet(id, company)
                         internetDao.setInternet(p.map { it.toDbModel() })
                         emit(
-                            Resource.Success(internetDao.getInternetIDList(id, company)
-                                .map { it.toModel() })
+                            Resource.Success(
+                                internetDao.getInternetIDList(id, company).map { it.toModel() })
+                        )
+
+                        Log.d(
+                            "sdfshrfubsbfsdf", "getInternet: $id \n ${
+                                internetDao.getInternetIDList(id, company).first().typeId
+                            }"
                         )
                     }
                 } else {
@@ -137,211 +165,219 @@ class MainRepositoryImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun getInternetDb(
+        id: String, company: String
+    ): Flow<Resource<List<GetInternetModel>>> =
+        loadResult({ mainApiService.getInternet(id, company) }, { data, flow ->
+
+            internetDao.deleteAllInternet(id, company)
+            internetDao.setInternet(data.map { it.toDbModel() })
+
+            Log.d("impl____", "getInternetTypeDb: ${
+                internetDao.getInternetIDList(id, company).map { it.toModel() }
+            }")
+
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getInternetTypeDb: ${
+                internetDao.getInternetIDList(id, company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(internetDao.getInternetIDList(id, company).map { it.toModel() })
+            )
+        })
 
     override suspend fun getSmsType(
         company: String
-    ): Flow<Resource<List<GetTypeModel>>> = flow {
+    ): Flow<Resource<List<GetTypeModel>>> =
+        loadResult({ mainApiService.getSmsType(company) }, { data, flow ->
 
-        emit(Resource.Success(smsDao.getSmsType(company).map { it.toModel() }))
+            smsDao.deleteAllSmsType(company)
+            smsDao.setSmsType(data.map { it.toDbModel() })
 
-        try {
-            val response = mainApiService.getSmsType(company)
+            Log.d("impl____", "getSmsType: ${
+                smsDao.getSmsType(company).map { it.toModel() }
+            }")
 
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    val result = response.body()
-                    result?.data?.let { p ->
-
-                        smsDao.deleteAllSmsType()
-                        smsDao.setSmsType(p.map { it.toDbModel() })
-
-                        emit(
-                            Resource.Success(smsDao.getSmsType(company).map { it.toModel() })
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "An expected error occurred! Data is null"
-                        )
-                    )
-                }
-            } else {
-                emit(
-                    Resource.Error(
-                        "Something went wrong ${response.code()}"
-                    )
-                )
-            }
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error(
-                    "An expected error occurred!"
-                )
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getSmsType: ${
+                smsDao.getSmsType(company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(smsDao.getSmsType(company).map { it.toModel() })
             )
-        } catch (e: IOException) {
-            emit(
-                Resource.Error(
-                    "Couldn't reach server. Please check your internet connection!"
-                )
-            )
-        }
-
-    }
+        })
 
     override suspend fun getSms(
         id: String, company: String
-    ): Flow<Resource<List<GetSmsModel>>> = flow {
+    ): Flow<Resource<List<GetSmsModel>>> =
+        loadResult({ mainApiService.getSms(id, company) }, { data, flow ->
 
-        emit(Resource.Success(smsDao.getSmsByIDList(id, company).map { it.toModel() }))
+            smsDao.deleteAllSms(id, company)
+            smsDao.setSms(data.map { it.toDbModel() })
 
-        try {
-            val response = mainApiService.getSms(id, company)
+            Log.d("impl____", "getSms: ${
+                smsDao.getSmsByIDList(id, company).map { it.toModel() }
+            }")
 
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    val result = response.body()
-                    result?.data?.let { p ->
-
-                        smsDao.deleteAllSms()
-                        smsDao.setSms(p.map { it.toDbModel() })
-
-                        emit(
-                            Resource.Success(
-                                smsDao.getSmsByIDList(id, company).map { it.toModel() })
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "An expected error occurred! Data is null"
-                        )
-                    )
-                }
-            } else {
-                emit(
-                    Resource.Error(
-                        "Something went wrong ${response.code()}"
-                    )
-                )
-            }
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error(
-                    "An expected error occurred!"
-                )
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getSms: ${
+                smsDao.getSmsByIDList(id, company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(smsDao.getSmsByIDList(id, company).map { it.toModel() })
             )
-        } catch (e: IOException) {
-            emit(
-                Resource.Error(
-                    "Couldn't reach server. Please check your internet connection!"
-                )
-            )
-        }
-    }
+        })
 
     override suspend fun getMinuteType(
         company: String
-    ): Flow<Resource<List<GetTypeModel>>> = flow {
+    ): Flow<Resource<List<GetTypeModel>>> =
+        loadResult({ mainApiService.getMinuteType(company) }, { data, flow ->
 
-        emit(Resource.Success(minuteDao.getMinuteType(company).map { it.toModel() }))
+            minuteDao.deleteMinuteType(company)
+            minuteDao.setMinuteType(data.map { it.toDbModel() })
 
+            Log.d("impl____", "getMinuteType: ${
+                minuteDao.getMinuteType(company).map { it.toModel() }
+            }")
 
-        try {
-            val response = mainApiService.getMinuteType(company)
-
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    val result = response.body()
-                    result?.data?.let { p ->
-
-                        minuteDao.deleteAllMinuteType()
-                        minuteDao.setMinuteType(p.map { it.toDbModel() })
-
-                        emit(
-                            Resource.Success(minuteDao.getMinuteType(company).map { it.toModel() })
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "An expected error occurred! Data is null"
-                        )
-                    )
-                }
-            } else {
-                emit(
-                    Resource.Error(
-                        "Something went wrong ${response.code()}"
-                    )
-                )
-            }
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error(
-                    "An expected error occurred!"
-                )
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getMinuteType: ${
+                minuteDao.getMinuteType(company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(minuteDao.getMinuteType(company).map { it.toModel() })
             )
-        } catch (e: IOException) {
-            emit(
-                Resource.Error(
-                    "Couldn't reach server. Please check your internet connection!"
-                )
-            )
-        }
-    }
+        })
+
+//    override suspend fun getMinuteType(
+//        company: String
+//    ): Flow<Resource<List<GetTypeModel>>> = flow {
+//
+//        emit(Resource.Success(minuteDao.getMinuteType(company).map { it.toModel() }))
+//
+//
+//        try {
+//            val response = mainApiService.getMinuteType(company)
+//
+//            if (response.isSuccessful) {
+//                if (response.body() != null) {
+//                    val result = response.body()
+//                    result?.data?.let { p ->
+//
+//                        minuteDao.deleteAllMinuteType()
+//                        minuteDao.setMinuteType(p.map { it.toDbModel() })
+//
+//                        emit(
+//                            Resource.Success(minuteDao.getMinuteType(company).map { it.toModel() })
+//                        )
+//                    }
+//                } else {
+//                    emit(
+//                        Resource.Error(
+//                            "An expected error occurred! Data is null"
+//                        )
+//                    )
+//                }
+//            } else {
+//                emit(
+//                    Resource.Error(
+//                        "Something went wrong ${response.code()}"
+//                    )
+//                )
+//            }
+//        } catch (e: HttpException) {
+//            emit(
+//                Resource.Error(
+//                    "An expected error occurred!"
+//                )
+//            )
+//        } catch (e: IOException) {
+//            emit(
+//                Resource.Error(
+//                    "Couldn't reach server. Please check your internet connection!"
+//                )
+//            )
+//        }
+//    }
 
     override suspend fun getMinute(
         id: String, company: String
-    ): Flow<Resource<List<GetMinuteModel>>> = flow {
+    ): Flow<Resource<List<GetMinuteModel>>> =
+        loadResult({ mainApiService.getMinute(id, company) }, { data, flow ->
 
-        emit(Resource.Success(minuteDao.getMinuteByIDList(id, company).map { it.toModel() }))
+            minuteDao.deleteAllMinute(id, company)
+            minuteDao.setMinute(data.map { it.toDbModel() })
 
+            Log.d("impl____", "getMinute: ${
+                minuteDao.getMinuteByIDList(id, company).map { it.toModel() }
+            }")
 
-        try {
-            val response = mainApiService.getMinute(id, company)
-
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    val result = response.body()
-                    result?.data?.let { p ->
-
-                        minuteDao.deleteAllMinute()
-                        minuteDao.setMinute(p.map { it.toDbModel() })
-
-                        emit(
-                            Resource.Success(minuteDao.getMinuteByIDList(id, company)
-                                .map { it.toModel() })
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "An expected error occurred! Data is null"
-                        )
-                    )
-                }
-            } else {
-                emit(
-                    Resource.Error(
-                        "Something went wrong ${response.code()}"
-                    )
-                )
-            }
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error(
-                    "An expected error occurred!"
-                )
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getMinute: ${
+                minuteDao.getMinuteByIDList(id, company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(minuteDao.getMinuteByIDList(id, company).map { it.toModel() })
             )
-        } catch (e: IOException) {
-            emit(
-                Resource.Error(
-                    "Couldn't reach server. Please check your internet connection!"
-                )
-            )
-        }
-    }
+        })
+
+//    override suspend fun getMinute(
+//        id: String, company: String
+//    ): Flow<Resource<List<GetMinuteModel>>> = flow {
+//
+//        emit(Resource.Success(minuteDao.getMinuteByIDList(id, company).map { it.toModel() }))
+//
+//
+//        try {
+//            val response = mainApiService.getMinute(id, company)
+//
+//            if (response.isSuccessful) {
+//                if (response.body() != null) {
+//                    val result = response.body()
+//                    result?.data?.let { p ->
+//
+//                        minuteDao.deleteAllMinute()
+//                        minuteDao.setMinute(p.map { it.toDbModel() })
+//
+//                        emit(
+//                            Resource.Success(minuteDao.getMinuteByIDList(id, company)
+//                                .map { it.toModel() })
+//                        )
+//                    }
+//                } else {
+//                    emit(
+//                        Resource.Error(
+//                            "An expected error occurred! Data is null"
+//                        )
+//                    )
+//                }
+//            } else {
+//                emit(
+//                    Resource.Error(
+//                        "Something went wrong ${response.code()}"
+//                    )
+//                )
+//            }
+//        } catch (e: HttpException) {
+//            emit(
+//                Resource.Error(
+//                    "An expected error occurred!"
+//                )
+//            )
+//        } catch (e: IOException) {
+//            emit(
+//                Resource.Error(
+//                    "Couldn't reach server. Please check your internet connection!"
+//                )
+//            )
+//        }
+//    }
 
     override suspend fun getNews(
         company: String
@@ -356,119 +392,153 @@ class MainRepositoryImpl @Inject constructor(
     })
 
     override suspend fun getTariffType(company: String): Flow<Resource<List<GetTypeModel>>> =
-        flow {
+        loadResult({ mainApiService.getTariffType(company) }, { data, flow ->
 
-            emit(Resource.Success(tariffDao.getTariffType(company).map { it.toModel() }))
+            tariffDao.deleteAllTariffType(company)
+            tariffDao.setTariffType(data.map { it.toDbModel() })
 
-            try {
-                val response = mainApiService.getTariffType(company)
+            Log.d("impl____", "getTariffType: ${
+                tariffDao.getTariffType(company).map { it.toModel() }
+            }")
 
-                if (response.isSuccessful) {
-                    if (response.body() != null) {
-                        val result = response.body()
-                        result?.data?.let { p ->
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getTariffType: ${
+                tariffDao.getTariffType(company).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(tariffDao.getTariffType(company).map { it.toModel() })
+            )
+        })
 
-                            tariffDao.deleteAllTariffType()
-                            tariffDao.setTariffType(p.map { it.toDbModel() })
-
-                            Log.d(
-                                "loggggggg",
-                                "getInternetType: ${
-                                    tariffDao.getTariffType(company).map { it.toModel() }
-                                }"
-                            )
-
-                            emit(
-                                Resource.Success(
-                                    tariffDao.getTariffType(company).map { it.toModel() })
-                            )
-                        }
-                    } else {
-                        emit(
-                            Resource.Error(
-                                "An expected error occurred! Data is null"
-                            )
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "Something went wrong ${response.code()}"
-                        )
-                    )
-                }
-            } catch (e: HttpException) {
-                emit(
-                    Resource.Error(
-                        "An expected error occurred!"
-                    )
-                )
-            } catch (e: IOException) {
-                emit(
-                    Resource.Error(
-                        "Couldn't reach server. Please check your internet connection!"
-                    )
-                )
-            }
-        }
+//    override suspend fun getTariffType(company: String): Flow<Resource<List<GetTypeModel>>> = flow {
+//
+//        emit(Resource.Success(tariffDao.getTariffType(company).map { it.toModel() }))
+//
+//        try {
+//            val response = mainApiService.getTariffType(company)
+//
+//            if (response.isSuccessful) {
+//                if (response.body() != null) {
+//                    val result = response.body()
+//                    result?.data?.let { p ->
+//
+//                        tariffDao.deleteAllTariffType()
+//                        tariffDao.setTariffType(p.map { it.toDbModel() })
+//
+//                        Log.d("loggggggg", "getInternetType: ${
+//                            tariffDao.getTariffType(company).map { it.toModel() }
+//                        }")
+//
+//                        emit(
+//                            Resource.Success(tariffDao.getTariffType(company).map { it.toModel() })
+//                        )
+//                    }
+//                } else {
+//                    emit(
+//                        Resource.Error(
+//                            "An expected error occurred! Data is null"
+//                        )
+//                    )
+//                }
+//            } else {
+//                emit(
+//                    Resource.Error(
+//                        "Something went wrong ${response.code()}"
+//                    )
+//                )
+//            }
+//        } catch (e: HttpException) {
+//            emit(
+//                Resource.Error(
+//                    "An expected error occurred!"
+//                )
+//            )
+//        } catch (e: IOException) {
+//            emit(
+//                Resource.Error(
+//                    "Couldn't reach server. Please check your internet connection!"
+//                )
+//            )
+//        }
+//    }
 
     override suspend fun getTariff(
         company: String, id: String
-    ): Flow<Resource<List<GetTariffModel>>> = flow {
+    ): Flow<Resource<List<GetTariffModel>>> =
+        loadResult({ mainApiService.getTariff(company, id) }, { data, flow ->
 
-        emit(Resource.Success(tariffDao.getTariff(company, id).map { it.toModel() }))
+            tariffDao.deleteAllTariff(id, company)
+            tariffDao.setTariff(data.map { it.toDbModel() })
 
-        try {
-            val response = mainApiService.getTariff(company, id)
+            Log.d("impl____", "getTariff: ${
+                tariffDao.getTariff(company, id).map { it.toModel() }
+            }")
 
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    val result = response.body()
-                    result?.data?.let { p ->
-
-                        tariffDao.deleteAllTariff()
-                        tariffDao.setTariff(p.map { it.toDbModel() })
-
-                        Log.d(
-                            "loggggggg",
-                            "getInternetType: ${
-                                internetDao.getInternetType(company).map { it.toModel() }
-                            }"
-                        )
-
-                        emit(
-                            Resource.Success(
-                                tariffDao.getTariff(company, id).map { it.toModel() })
-                        )
-                    }
-                } else {
-                    emit(
-                        Resource.Error(
-                            "An expected error occurred! Data is null"
-                        )
-                    )
-                }
-            } else {
-                emit(
-                    Resource.Error(
-                        "Something went wrong ${response.code()}"
-                    )
-                )
-            }
-        } catch (e: HttpException) {
-            emit(
-                Resource.Error(
-                    "An expected error occurred!"
-                )
+            flow.emit(Resource.Success(data.map { it.toModel() }))
+        }, { flow ->
+            Log.d("impl____", "getTariff: ${
+                tariffDao.getTariff(company, id).map { it.toModel() }
+            }")
+            flow.emit(
+                Resource.Success(tariffDao.getTariff(company, id).map { it.toModel() })
             )
-        } catch (e: IOException) {
-            emit(
-                Resource.Error(
-                    "Couldn't reach server. Please check your internet connection!"
-                )
-            )
-        }
-    }
+        })
+
+
+//    override suspend fun getTariff(
+//        company: String, id: String
+//    ): Flow<Resource<List<GetTariffModel>>> = flow {
+//
+//        emit(Resource.Success(tariffDao.getTariff(company, id).map { it.toModel() }))
+//
+//        try {
+//            val response = mainApiService.getTariff(company, id)
+//
+//            if (response.isSuccessful) {
+//                if (response.body() != null) {
+//                    val result = response.body()
+//                    result?.data?.let { p ->
+//
+//                        tariffDao.deleteAllTariff()
+//                        tariffDao.setTariff(p.map { it.toDbModel() })
+//
+//                        Log.d("loggggggg", "getInternetType: ${
+//                            internetDao.getInternetType(company).map { it.toModel() }
+//                        }")
+//
+//                        emit(
+//                            Resource.Success(tariffDao.getTariff(company, id).map { it.toModel() })
+//                        )
+//                    }
+//                } else {
+//                    emit(
+//                        Resource.Error(
+//                            "An expected error occurred! Data is null"
+//                        )
+//                    )
+//                }
+//            } else {
+//                emit(
+//                    Resource.Error(
+//                        "Something went wrong ${response.code()}"
+//                    )
+//                )
+//            }
+//        } catch (e: HttpException) {
+//            emit(
+//                Resource.Error(
+//                    "An expected error occurred!"
+//                )
+//            )
+//        } catch (e: IOException) {
+//            emit(
+//                Resource.Error(
+//                    "Couldn't reach server. Please check your internet connection!"
+//                )
+//            )
+//        }
+//    }
 
     override suspend fun getUssd(
         company: String
@@ -486,16 +556,12 @@ class MainRepositoryImpl @Inject constructor(
 
                         ussdDao.setUssd(p.map { it.toDbModel() })
 
-                        Log.d(
-                            "loggggggg",
-                            "getInternetType: ${
-                                internetDao.getInternetType(company).map { it.toModel() }
-                            }"
-                        )
+                        Log.d("loggggggg", "getInternetType: ${
+                            internetDao.getInternetType(company).map { it.toModel() }
+                        }")
 
                         emit(
-                            Resource.Success(
-                                ussdDao.getUssd(company).map { it.toModel() })
+                            Resource.Success(ussdDao.getUssd(company).map { it.toModel() })
                         )
                     }
                 } else {

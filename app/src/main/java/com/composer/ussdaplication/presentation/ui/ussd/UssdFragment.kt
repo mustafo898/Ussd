@@ -39,6 +39,7 @@ class UssdFragment : BaseFragment<FragmentUssdBinding>(FragmentUssdBinding::infl
         var code = ""
 
         adapter.setItemClickListener {
+            dialog.setTitle(true)
             code = it.code
             dialog.show()
         }

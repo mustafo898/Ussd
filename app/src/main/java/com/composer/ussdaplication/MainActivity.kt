@@ -3,9 +3,11 @@ package com.composer.ussdaplication
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private val listFragments = listOf(R.id.mainFragment, R.id.settings)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -48,9 +51,11 @@ class MainActivity : AppCompatActivity() {
 
             if (listFragments[1] == destination.id) {
                 binding.toolbar.text.text = destination.label
+                binding.toolbar.line.gone()
             }
             if (listFragments[0] == destination.id) {
-                binding.toolbar.text.text = com.composer.ussdaplication.App.sharedPreference.operator
+                binding.toolbar.text.text = App.sharedPreference.operator
+                binding.toolbar.line.visible()
             }
 
             if (listFragments.contains(destination.id)) {
@@ -74,14 +79,18 @@ class MainActivity : AppCompatActivity() {
 
     fun setBottomColor(data: Int) {
         binding.bottomNav.barIndicatorColor = getColor(data)
-        com.composer.ussdaplication.App.sharedPreference.operatorColor = getColor(data)
+        App.sharedPreference.operatorColor = getColor(data)
+        binding.toolbar.call.setCardBackgroundColor(getColor(data))
+        binding.toolbar.facebook.setCardBackgroundColor(getColor(data))
+        binding.toolbar.telegram.setCardBackgroundColor(getColor(data))
     }
 
     fun setToolbarText(data: String) = binding.apply {
         toolbar.text.text = data
-        com.composer.ussdaplication.App.sharedPreference.operator = data
+        App.sharedPreference.operator = data
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun dexter() {
         Dexter.withContext(this)
             .withPermissions(
@@ -92,11 +101,14 @@ class MainActivity : AppCompatActivity() {
             ).withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {
                     try {
-                        com.composer.ussdaplication.App.IS_DUAL = getOperatorsName(this@MainActivity).size == 2
-                        com.composer.ussdaplication.App.sharedPreference.operator = getOperatorsName(this@MainActivity)[0]
+                        App.IS_DUAL =
+                            getOperatorsName(this@MainActivity).size == 2
+                        App.sharedPreference.operator =
+                            getOperatorsName(this@MainActivity)[0]
+
                         Log.d(
                             "asdlkfjfkhsdjfd",
-                            "onPermissionsChecked: ${com.composer.ussdaplication.App.sharedPreference.operator}"
+                            "onPermissionsChecked: ${App.sharedPreference.operator}"
                         )
                     } catch (e: Exception) {
                         log(e.toString())

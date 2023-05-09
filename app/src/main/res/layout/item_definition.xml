@@ -89,6 +89,7 @@
                     android:id="@+id/minute"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:id="@+id/outMinuteLine"
@@ -268,6 +269,7 @@
                     android:textSize="14sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:id="@+id/withOutSmsLine"

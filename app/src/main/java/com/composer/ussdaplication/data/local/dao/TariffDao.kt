@@ -28,6 +28,9 @@ interface TariffDao {
     @Query("DELETE FROM tariff")
     fun deleteAllTariff()
 
+    @Query("DELETE FROM tariff WHERE typeId = :typeId and company = :company")
+    fun deleteAllTariff(typeId:String, company: String)
+
     /**  TARIFF CRUD */
 
     /**  TARIFF type  CRUD */
@@ -44,8 +47,8 @@ interface TariffDao {
     @Delete
     fun deleteTariffType(user: GetTariffTypeDtoDb)
 
-    @Query("DELETE FROM internetTypeDb")
-    fun deleteAllTariffType()
+    @Query("DELETE FROM internetTypeDb where company = :company")
+    fun deleteAllTariffType(company: String)
 
     /**  TARIFF type CRUD */
 }

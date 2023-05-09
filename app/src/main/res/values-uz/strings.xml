@@ -29,13 +29,20 @@
     <string name="money">%1$s so\'m</string>
     <string name="delete">O‘chirish</string>
     <!--    <string name="tariff">%1$s</string>-->
-    <string name="duration">Muddat : %1$s</string>
-    <string name="code">Yoqish kodi : %1$s</string>
-    <string name="disActivateCode">O\'chirish kodi : %1$s</string>
+    <string name="duration">Muddat : </string>
+    <string name="code">Yoqish kodi : </string>
+    <string name="disActivateCode">O\'chirish kodi : </string>
     <string name="description">Tavsifi : </string>
-    <string name="checkLimit">Limitni tekshirish : %1$s</string>
+    <string name="checkLimit">Limitni tekshirish : </string>
 
     <string name="paket_1">%1$s sms</string>
     <string name="paket_2">%1$s daq</string>
-
+    <string name="check">Trafik qoldig’ini tekshirish : %1$s</string>
+    <string name="cost">Abonent tolovi : </string>
+    <string name="want_activate">Faollashtirishni xoxlaysizmi?</string>
+    <string name="want_deactivate">O\'chirishni xoxlaysizmi?</string>
+    <string name="change_tariff">Ta\'rifni almashtirish?</string>
+    <string name="change_tariff_1">Ta\'rifni almashtirish</string>
+    <string name="no">Yoq</string>
+    <string name="yes">Xa</string>
 </resources>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragment_back">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:overScrollMode="never"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -70,7 +69,8 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="90dp"
@@ -87,7 +87,7 @@
                             android:id="@+id/cardUcell"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/ucell"
+                            android:background="@color/white"
                             android:gravity="center"
                             android:paddingHorizontal="16dp"
                             android:paddingVertical="14dp">
@@ -96,8 +96,7 @@
                                 android:id="@+id/imageUcell"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:src="@drawable/ucell_white"
-                                android:textColor="@color/white"
+                                android:src="@drawable/ucell"
                                 android:textSize="16sp" />
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -275,10 +274,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/margin_20dp"
-                                    android:src="@drawable/call"
+                                    android:src="@drawable/tel"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:tint="@color/black" />
 
                                 <TextView
                                     android:layout_width="@dimen/margin_0dp"

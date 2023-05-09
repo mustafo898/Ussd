@@ -52,86 +52,252 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/txt" />
 
+        <!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+        <!--            android:id="@+id/line1"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginHorizontal="16dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/line">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/perM"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:ellipsize="end"-->
+        <!--                android:fontFamily="@font/inter_600"-->
+        <!--                android:maxLines="1"-->
+        <!--                android:text="1 oyga"-->
+        <!--                android:textColor="@color/sub_label"-->
+        <!--                android:textSize="12sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/code"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="@dimen/margin_2dp"-->
+        <!--                android:ellipsize="end"-->
+        <!--                android:fontFamily="@font/inter_600"-->
+        <!--                android:maxLines="1"-->
+        <!--                android:text="*100#"-->
+        <!--                android:textColor="@color/sub_label"-->
+        <!--                android:textSize="12sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/checkLimit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:ellipsize="end"-->
+        <!--                android:fontFamily="@font/inter_600"-->
+        <!--                android:maxLines="1"-->
+        <!--                android:text=""-->
+        <!--                android:visibility="visible"-->
+        <!--                android:textColor="@color/sub_label"-->
+        <!--                android:textSize="12sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/disActivate"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:ellipsize="end"-->
+        <!--                android:fontFamily="@font/inter_600"-->
+        <!--                android:maxLines="1"-->
+        <!--                android:text="*100#"-->
+        <!--                android:textColor="@color/sub_label"-->
+        <!--                android:textSize="12sp" />-->
+
+        <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:id="@+id/line2"-->
+        <!--                android:visibility="visible">-->
+
+        <!--                <TextView-->
+        <!--                    android:text="@string/description"-->
+        <!--                    android:textSize="12sp"-->
+        <!--                    android:fontFamily="@font/inter_600"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:textColor="@color/sub_label"/>-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/description"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:fontFamily="@font/inter_600"-->
+        <!--                    android:text=""-->
+        <!--                    android:layout_marginStart="4dp"-->
+        <!--                    android:visibility="visible"-->
+        <!--                    android:textColor="@color/sub_label"-->
+        <!--                    android:textSize="12sp" />-->
+
+        <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+        <!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/line">
 
-            <TextView
-                android:id="@+id/perM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/inter_600"
-                android:maxLines="1"
-                android:text="1 oyga"
-                android:textColor="@color/sub_label"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_2dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/inter_600"
-                android:maxLines="1"
-                android:text="*100#"
-                android:textColor="@color/sub_label"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/checkLimit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/inter_600"
-                android:maxLines="1"
-                android:text=""
-                android:visibility="gone"
-                android:textColor="@color/sub_label"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/disActivate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/inter_600"
-                android:maxLines="1"
-                android:text="*100#"
-                android:textColor="@color/sub_label"
-                android:textSize="12sp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="@string/duration"
+                    android:textColor="@color/sub_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/perM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="fofofof"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:id="@+id/codeLine"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="@string/code"
+                    android:textColor="@color/sub_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:id="@+id/checkLine"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="@string/checkLimit"
+                    android:textColor="@color/sub_label"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/checkLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100$"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:id="@+id/disActivateLine"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="@string/disActivateCode"
+                    android:textColor="@color/sub_label"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/disActivate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:id="@+id/line2"
                 android:visibility="visible">
 
                 <TextView
-                    android:text="@string/description"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/inter_600"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/sub_label"/>
+                    android:fontFamily="@font/inter_600"
+                    android:text="@string/description"
+                    android:textColor="@color/sub_label"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_600"
-                    android:text=""
                     android:layout_marginStart="4dp"
-                    android:visibility="visible"
-                    android:textColor="@color/sub_label"
-                    android:textSize="12sp" />
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:text="ssd"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="visible" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -141,11 +307,11 @@
             android:id="@+id/activate"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="@dimen/margin_20dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
             android:foreground="?selectableItemBackgroundBorderless"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_20sdp"
@@ -174,14 +340,50 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/activate2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="@dimen/margin_0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line1">
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ucell"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro"
+                    android:paddingHorizontal="@dimen/margin_16dp"
+                    android:text="@string/activate"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/disActivateBtn"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
             android:foreground="?selectableItemBackgroundBorderless"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_20sdp"

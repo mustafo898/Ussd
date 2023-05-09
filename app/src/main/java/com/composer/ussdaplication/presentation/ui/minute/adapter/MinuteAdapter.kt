@@ -23,9 +23,10 @@ class MinuteAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    private var itemClickListener: ((id: GetMinuteModel) -> Unit)? = null
+    private var itemClickListener: ((id: GetMinuteModel, Boolean) -> Unit)? = null
 
-    fun setItemClickListener(f: (id: GetMinuteModel) -> Unit) {
+    fun setItemClickListener(f: (id: GetMinuteModel, Boolean) -> Unit) {
+
         itemClickListener = f
     }
 
@@ -35,18 +36,26 @@ class MinuteAdapter(private val context: Context) :
         fun bind(data: GetMinuteModel) {
             binding.txt.setTextColor(com.composer.ussdaplication.App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(com.composer.ussdaplication.App.sharedPreference.operatorColor)
+            binding.linear1.setBackgroundColor(com.composer.ussdaplication.App.sharedPreference.operatorColor)
 
             binding.txt.text = context.getString(R.string.paket_2, getCurrentLang(data.name))
             binding.cost.text = context.getString(R.string.money, "${data.price}")
-            binding.perM.text = context.getString(R.string.duration, getCurrentLang(data.duration))
-            binding.code.text = context.getString(R.string.code, data.turnOn)
-            binding.disActivate.text = context.getString(R.string.disActivateCode, data.turnOff)
+            binding.perM.text = getCurrentLang(data.duration)
+            binding.code.text = data.turnOn
+            binding.disActivate.text = data.turnOff
 
             if (data.turnOff.isNotEmpty()) {
-                binding.disActivate.text = context.getString(R.string.disActivateCode, data.turnOff)
-                binding.disActivate.visible()
-            } else
-                binding.disActivate.gone()
+                binding.disActivate.text = data.turnOff
+                binding.disActivateLine.visible()
+                binding.disActivateBtn.visible()
+                binding.activate2.gone()
+                binding.activate.visible()
+            } else {
+                binding.disActivateLine.gone()
+                binding.disActivateBtn.gone()
+                binding.activate2.visible()
+                binding.activate.gone()
+            }
 
             if (data.description != null) {
                 if (data.description._id.isNotEmpty()) {
@@ -58,13 +67,21 @@ class MinuteAdapter(private val context: Context) :
                 binding.line2.gone()
 
             if (data.checkLimit.isNotEmpty()) {
-                binding.checkLimit.visible()
-                binding.checkLimit.text = context.getString(R.string.checkLimit, data.checkLimit)
+                binding.checkLine.visible()
+                binding.checkLimit.text = data.checkLimit
             } else
-                binding.checkLimit.gone()
+                binding.checkLine.gone()
 
             binding.linear.setOnClickListener {
-                itemClickListener?.invoke(data)
+                itemClickListener?.invoke(data, true)
+            }
+
+            binding.linear2.setOnClickListener {
+                itemClickListener?.invoke(data, true)
+            }
+
+            binding.linear1.setOnClickListener {
+                itemClickListener?.invoke(data, false)
             }
         }
     }

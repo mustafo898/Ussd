@@ -3,8 +3,6 @@ package com.composer.ussdaplication.data.local.dao
 import androidx.room.*
 import com.composer.ussdaplication.data.local.models.minute.GetMinuteDb
 import com.composer.ussdaplication.data.local.models.minute.GetMinuteTypeDb
-import com.composer.ussdaplication.data.remote.dto.minute.GetMinuteDto
-import com.composer.ussdaplication.data.remote.dto.minute.GetMinuteTypeDto
 
 @Dao
 interface MinuteDao {
@@ -23,8 +21,8 @@ interface MinuteDao {
     @Delete
     fun deleteMinuteType(user: GetMinuteTypeDb)
 
-    @Query("DELETE FROM minuteTypeDb")
-    fun deleteAllMinuteType()
+    @Query("DELETE FROM minuteTypeDb WHERE company = :company")
+    fun deleteMinuteType(company: String)
 
     /**  MINUTE type CRUD */
 
@@ -44,6 +42,9 @@ interface MinuteDao {
 
     @Query("DELETE FROM minute")
     fun deleteAllMinute()
+
+    @Query("DELETE FROM minute WHERE typeId = :typeId and company = :company")
+    fun deleteAllMinute(typeId: String, company: String)
 
     /**  MINUTE type CRUD */
 

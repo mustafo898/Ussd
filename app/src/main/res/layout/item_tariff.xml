@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_16sdp"
+    android:layout_marginTop="@dimen/_16sdp"
+    android:background="@drawable/round_bg"
+    android:elevation="0dp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_16sdp"
+    app:cardCornerRadius="@dimen/_20sdp"
+    app:cardElevation="@dimen/margin_0dp">
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expansion_headerIndicator="@id/headerIndicator"
+        app:expansion_layout="@id/expansionLayout"
+        app:expansion_toggleOnClick="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/sf_pro"
+                android:gravity="center"
+                android:text="Пакет 60 Минут"
+                android:textColor="@color/ucell"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/headerIndicator"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:padding="11dp"
+                android:src="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="@id/txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt"
+                app:tint="@color/black" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@id/txt" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/line">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/costLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/inter_600"
+                        android:maxLines="1"
+                        android:text="@string/cost"
+                        android:textColor="@color/sub_label"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/inter_600"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="1000 daq"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/minuteLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/inter_600"
+                        android:maxLines="1"
+                        android:text="O'zb boyicha daq :"
+                        android:textColor="@color/sub_label"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/minute"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/inter_600"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="1000 daq"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/expansionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/outMinuteLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Tarmoq ichida :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/outMinute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="1000 daq"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/internetLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Internet :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/internet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="1000 daq"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/smsLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Sms :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/sms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="1000 daq"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/codeLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Tarifni almashtirish :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/withOutLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Internet limitidan tashqari :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/withOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/withOutMinuteLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Daqiqalar limitidan tashqari :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/withOutMinute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/withOutSmsLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:maxLines="1"
+                    android:text="Sms to'plamidan tashqari :"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/withOutSms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_600"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="*100#"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:id="@+id/checkLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_600"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/sub_label"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_600"
+                    android:text="@string/description"
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/inter_600"
+                    android:text=""
+                    android:textColor="@color/sub_label"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activate"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="@dimen/margin_0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line1">
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ucell"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/activateTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro"
+                        android:paddingHorizontal="@dimen/margin_16dp"
+                        android:text="@string/change_tariff_1"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

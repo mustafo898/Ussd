@@ -76,18 +76,16 @@ open class ResponseHandler {
             }
         }
 
-    protected suspend fun <T, K> loadResultDao(
-        dao: T? = null,
+
+    protected suspend fun <T, K> loadResult(
         requestSource: suspend () -> Response<MainResponseDto<T>>,
         successBody: suspend (T, FlowCollector<Resource<K>>) -> Unit,
+        internetConnection: suspend (FlowCollector<Resource<K>>) -> Unit = { Unit }
     ): Flow<Resource<K>> =
         flow {
             try {
+                internetConnection.invoke(this)
                 emit(Resource.Loading())
-
-                if (dao != null)
-                    successBody.invoke(dao, this@flow)
-
                 val response = requestSource.invoke()
                 if (response.isSuccessful) {
                     val result = response.body()
@@ -131,17 +129,19 @@ open class ResponseHandler {
                     }
                 }
             } catch (e: HttpException) {
-                emit(
-                    Resource.Error(
-                        "An expected error occurred!"
-                    )
-                )
+                internetConnection.invoke(this)
+//                emit(
+//                    Resource.Error(
+//                        "An expected error occurred!"
+//                    )
+//                )
             } catch (e: IOException) {
-                emit(
-                    Resource.Error(
-                        "Couldn't reach server. Please check your internet connection!"
-                    )
-                )
+                internetConnection.invoke(this)
+//                emit(
+//                    Resource.Error(
+//                        "Couldn't reach server. Please check your internet connection!"
+//                    )
+//                )
             }
         }
 

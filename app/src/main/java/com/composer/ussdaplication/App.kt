@@ -45,6 +45,7 @@ class App : Application() {
 
         val telephonyManager = this.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         val networkOperatorName = telephonyManager.networkOperatorName
+
         sharedPreference.operator = networkOperatorName
 
         Hawk.put(

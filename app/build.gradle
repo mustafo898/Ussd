@@ -21,8 +21,8 @@ android {
         applicationId "com.composer.ussdaplication"
         minSdk 23
         targetSdk 33
-        versionCode 5
-        versionName "5"
+        versionCode 7
+        versionName "7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -115,6 +115,9 @@ dependencies {
 
     //dexter permission
     implementation 'com.karumi:dexter:6.2.3'
+
+    //expension
+    implementation("com.github.florent37:expansionpanel:1.2.4")
 
     def room_version = "2.3.0"
     //Room

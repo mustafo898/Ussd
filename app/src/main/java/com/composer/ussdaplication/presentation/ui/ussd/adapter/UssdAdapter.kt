@@ -34,7 +34,7 @@ class UssdAdapter(private val context: Context) :
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
 
             binding.txt.text = getCurrentLang(data.name)
-            binding.code.text = context.getString(R.string.code, data.code)
+            binding.code.text = data.code
             binding.description.text = getCurrentLang(data.description)
 
             binding.linear.setOnClickListener {

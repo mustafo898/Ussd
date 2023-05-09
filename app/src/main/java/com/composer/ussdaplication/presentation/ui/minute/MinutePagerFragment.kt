@@ -8,6 +8,7 @@ import com.composer.ussdaplication.databinding.FragmentMinutePagerBinding
 import com.composer.ussdaplication.presentation.ui.dialog.ConfirmDialog
 import com.composer.ussdaplication.presentation.ui.minute.adapter.MinuteAdapter
 import com.composer.ussdaplication.utils.activateCode
+import com.composer.ussdaplication.utils.getColor
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -51,10 +52,18 @@ class MinutePagerFragment :
 
         getMinute(param1)
 
+        binding.card.strokeColor = App.sharedPreference.operatorColor
+
         var code = ""
 
-        adapter.setItemClickListener {
-            code = it.turnOn
+        adapter.setItemClickListener { it, enable ->
+            dialog.setTitle(enable)
+            code = if (enable) {
+                it.turnOn
+            } else {
+                it.turnOff
+            }
+            dialog.show()
         }
 
         dialog.setActivateClickListener {

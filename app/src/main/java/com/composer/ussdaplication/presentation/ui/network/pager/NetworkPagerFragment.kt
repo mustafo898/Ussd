@@ -10,7 +10,9 @@ import com.composer.ussdaplication.presentation.ui.dialog.ConfirmDialog
 import com.composer.ussdaplication.presentation.ui.network.NetworkViewModel
 import com.composer.ussdaplication.presentation.ui.network.adapter.NetworkAdapter
 import com.composer.ussdaplication.utils.activateCode
+import com.composer.ussdaplication.utils.getColor
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -50,12 +52,23 @@ class NetworkPagerFragment :
             param1 = it.getString(ARG_PARAM1).toString()
         }
 
+
+        Log.d("sdsfsfrngrn", "onViewCreate: $param1")
         getInternet(param1)
+
+        binding.card.strokeColor = App.sharedPreference.operatorColor
 
         var code = ""
 
-        adapter.setItemClickListener {
-            code = it.turnOn
+        adapter.setItemClickListener { it, enable ->
+            dialog.setTitle(enable)
+            Log.d("sdsfsfrngrn_sddlf", "onViewCreate: $enable")
+
+            code = if (enable) {
+                it.turnOn
+            } else {
+                it.turnOff
+            }
             dialog.show()
         }
 
@@ -65,14 +78,23 @@ class NetworkPagerFragment :
         }
     }
 
-    private fun getInternet(id: String) = lifecycleScope.launchWhenStarted {
+    private fun getInternet(id: String) = lifecycleScope.launch {
         viewModel.getInternet(
             id, App.sharedPreference.operator.lowercase()
         ).collectLatest {
             it.data?.let { p ->
-                Log.d("dsfsdfsdf", "getInternet: $p")
+                Log.d("sdlfslkfjslkdflrjuh internet", "getList: fragment ------ $p")
                 adapter.setList(p)
             }
         }
+
+//        viewModel.getInternetDb(
+//            id, App.sharedPreference.operator.lowercase()
+//        ).collectLatest {
+//            it.data?.let { p ->
+//                Log.d("dsfsdfsdf_db", "getInternet: $p")
+//                adapter.setList(p)
+//            }
+//        }
     }
 }

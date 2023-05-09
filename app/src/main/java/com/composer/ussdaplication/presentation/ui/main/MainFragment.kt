@@ -32,6 +32,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun setUpToolBar() {
+        Log.d("dfhfjghf", "setUpToolBar: ${App.sharedPreference.operator}")
+
         if (App.sharedPreference.operator.contains(CompanyName.Ucell.name))
             ucellColor()
 
@@ -44,7 +46,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         if (App.sharedPreference.operator.contains(CompanyName.Beeline.name))
             beelineColor()
 
-        if (App.sharedPreference.operator.contains(CompanyName.Humans.name))
+        if (App.sharedPreference.operator.contains(CompanyName.Humans.name.toUpperCase()))
             humansColor()
     }
 
@@ -177,12 +179,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 //    }
 
     private fun setDefault() = binding.apply {
-        animateCard(internet)
-        animateCard(sms)
-        animateCard(tarif)
-        animateCard(minute)
-        animateCard(ussd)
-        animateCard(service)
+//        animateCard(internet)
+//        animateCard(sms)
+//        animateCard(tarif)
+//        animateCard(minute)
+//        animateCard(ussd)
+//        animateCard(service)
 
         binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.ucell))
 
@@ -205,41 +207,30 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     private fun clickOperators() = binding.apply {
         cardUcell.setOnClickListener {
             ucellColor()
-            (activity as MainActivity).setToolbarText(CompanyName.Ucell.name)
-            setNews()
-//            runService()
         }
 
         cardBeeline.setOnClickListener {
             beelineColor()
-            (activity as MainActivity).setToolbarText(CompanyName.Beeline.name)
-            setNews()
-//            runService()
         }
 
         cardMobi.setOnClickListener {
             mobiColor()
-            (activity as MainActivity).setToolbarText(CompanyName.Mobiuz.name)
-            setNews()
-//            runService()
         }
 
         cardUztelecom.setOnClickListener {
             uztelecomColor()
-            (activity as MainActivity).setToolbarText(CompanyName.Uztelecom.name)
-            setNews()
-//            runService()
         }
 
         cardHumans.setOnClickListener {
             humansColor()
-            (activity as MainActivity).setToolbarText(CompanyName.Humans.name)
-            setNews()
-//            runService()
         }
     }
 
     private fun ucellColor() = binding.apply {
+        scroll.smoothScrollTo(scroll.left, 0)
+        (activity as MainActivity).setToolbarText(CompanyName.Ucell.name)
+        Log.d("sdklflhf", "ucellColor: ${App.sharedPreference.operator}")
+        setNews()
         setDefault()
         binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.ucell))
         imageUcell.setImage(R.drawable.ucell_white)
@@ -248,7 +239,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun beelineColor() = binding.apply {
+        scroll.smoothScrollTo(scroll.left, 0)
+        (activity as MainActivity).setToolbarText(CompanyName.Beeline.name)
         setDefault()
+        setNews()
         binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.beeline))
         imageBeeline.setImage(R.drawable.beeline_black)
         cardBeeline.setBackColor(R.color.beeline)
@@ -256,6 +250,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun mobiColor() = binding.apply {
+        scroll.smoothScrollTo(scroll.right, 0)
+        (activity as MainActivity).setToolbarText(CompanyName.Mobiuz.name)
+        setNews()
         setDefault()
         binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.mobi))
         imageMobi.setImage(R.drawable.mobiuz)
@@ -264,7 +261,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun uztelecomColor() = binding.apply {
+        scroll.smoothScrollTo(scroll.left, 0)
+        (activity as MainActivity).setToolbarText(CompanyName.Uztelecom.name)
         setDefault()
+        setNews()
         binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.uztelecom))
         imageUztelecom.setImage(R.drawable.uztelecom)
         cardUztelecom.setBackColor(R.color.uztelecom)
@@ -272,8 +272,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun humansColor() = binding.apply {
+        scroll.smoothScrollTo(scroll.right, 0)
+        (activity as MainActivity).setToolbarText(CompanyName.Humans.name)
         setDefault()
-        binding.springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.humans))
+        setNews()
+        springDotsIndicator.setStrokeDotsIndicatorColor(getColor(R.color.humans))
         imageHumans.setImage(R.drawable.humans)
         cardHumans.setBackColor(R.color.humans)
         (activity as MainActivity).setBottomColor(R.color.humans)

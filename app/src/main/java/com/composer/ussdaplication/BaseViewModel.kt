@@ -1,5 +1,6 @@
 package com.composer.ussdaplication
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.composer.ussdaplication.domain.common.Resource
@@ -28,6 +29,8 @@ abstract class BaseViewModel : ViewModel() {
                     }
                     is Resource.Success -> {
                         listState.value = UIListState(data = it.data)
+
+                        Log.d("sdlfslkfjslkdflrjuh", "getList: ${it.data}")
                     }
                 }
             }.launchIn(CoroutineScope(Dispatchers.IO))

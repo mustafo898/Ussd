@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.composer.ussdaplication.App
 import com.composer.ussdaplication.R
-import com.composer.ussdaplication.databinding.ItemDefinitionBinding
+import com.composer.ussdaplication.databinding.ItemTariffBinding
+import com.composer.ussdaplication.domain.model.minute.GetMinuteModel
 import com.composer.ussdaplication.domain.model.tarif.GetTariffModel
 import com.composer.ussdaplication.utils.getCurrentLang
 import com.composer.ussdaplication.utils.visible
@@ -28,11 +29,12 @@ class DefinitionAdapter(private val context: Context) :
         itemClickListener = f
     }
 
-    inner class ViewHolder(private val binding: ItemDefinitionBinding) :
+    inner class ViewHolder(private val binding: ItemTariffBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: GetTariffModel) {
             binding.txt.setTextColor(App.sharedPreference.operatorColor)
             binding.linear.setBackgroundColor(App.sharedPreference.operatorColor)
+            binding.headerIndicator.setColorFilter(App.sharedPreference.operatorColor)
 
             binding.txt.text = getCurrentLang(data.name)
             binding.cost.text = context.getString(R.string.money, "${data.price}")
@@ -76,7 +78,7 @@ class DefinitionAdapter(private val context: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        ItemDefinitionBinding.inflate(
+        ItemTariffBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
     )

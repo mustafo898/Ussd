@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
     suspend fun getInternetType(company: String): Flow<Resource<List<GetTypeModel>>>
+    suspend fun getInternetTypeDb(company: String): Flow<Resource<List<GetTypeModel>>>
 
     suspend fun getInternet(id: String, company: String): Flow<Resource<List<GetInternetModel>>>
+    suspend fun getInternetDb(id: String, company: String): Flow<Resource<List<GetInternetModel>>>
 
     suspend fun getSmsType(company: String): Flow<Resource<List<GetTypeModel>>>
 

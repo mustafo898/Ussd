@@ -41,6 +41,11 @@ fun GetMinuteTypeDto.toModel(): GetTypeModel {
     return GetTypeModel(_id, company, createdAt, name.toModel())
 }
 
+fun GetTariffTypeDto.toModel(): GetTypeModel {
+    return GetTypeModel(_id, company, createdAt, name.toModel())
+}
+
+
 fun GetSmsTypeDto.toModel(): GetTypeModel {
     return GetTypeModel(_id, company, createdAt, name.toModel())
 }

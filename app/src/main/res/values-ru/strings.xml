@@ -28,14 +28,21 @@
     <string name="money">%1$s сум</string>
     <string name="delete">Удалить</string>
     <!--    <string name="tariff">%1$s</string>-->
-    <string name="duration">Продолжительность : %1$s</string>
-    <string name="code">Код активации : %1$s</string>
-    <string name="disActivateCode">Код деактивации : %1$s</string>
+    <string name="duration">Продолжительность : </string>
+    <string name="code">Код активации : </string>
+    <string name="disActivateCode">Код деактивации : </string>
     <string name="description">Oписание : </string>
-    <string name="checkLimit">Проверить лимит : %1$s</string>
+    <string name="checkLimit">Проверить лимит : </string>
     <string name="megaBayt">%1$s мб</string>
 
     <string name="paket_1">%1$s смс</string>
     <string name="paket_2">%1$s мин</string>
-
+    <string name="check">Проверить баланс трафика : %1$s</string>
+    <string name="cost">Абонентская плата : </string>
+    <string name="want_activate">Вы хотите активировать?</string>
+    <string name="want_deactivate">Вы хотите деактивировать?</string>
+    <string name="change_tariff">Изменить тариф?</string>
+    <string name="change_tariff_1">Изменить тариф</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
 </resources>

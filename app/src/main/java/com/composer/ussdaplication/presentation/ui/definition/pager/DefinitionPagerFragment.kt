@@ -35,11 +35,6 @@ class DefinitionPagerFragment :
             it.data?.let { p ->
                 Log.d("sdklflhf", "getType: $p")
                 setViewPager(p)
-                p.forEach { m ->
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        viewModel.getTariff(m._id, App.sharedPreference.operator.lowercase())
-                    }
-                }
             }
         }
     }
@@ -59,7 +54,6 @@ class DefinitionPagerFragment :
         }
 
         binding.viewPager.adapter = DefinitionPagerAdapter(childFragmentManager, lifecycle, idList)
-        binding.viewPager.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = getCurrentLang(list[position].name)

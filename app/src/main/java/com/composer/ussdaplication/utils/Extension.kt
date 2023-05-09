@@ -31,6 +31,7 @@ import com.composer.ussdaplication.R
 import com.composer.ussdaplication.domain.model.LanguageModel
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.google.gson.Gson
 
 
 fun ViewPager2.autoScroll(interval: Long) {
@@ -213,6 +214,8 @@ fun activateCode(context: Context, code: String) {
     if (code.isNotEmpty())
         if (getOperatorsName(context)[0].contains(App.sharedPreference.operator))
             ussdToCallableUri(code, context)
+        else if (getOperatorsName(context)[1].contains(App.sharedPreference.operator))
+            ussdToCallableUri(code, context)
         else
             Toast.makeText(
                 context,
@@ -242,6 +245,7 @@ fun getOperatorsName(context: Context): ArrayList<String> {
     if (subscriptionInfoData != null && subscriptionInfoData.size > 0) {
         for (j in subscriptionInfoData.indices) {
             data.add(subscriptionInfoData[j].carrierName.toString())
+
             Log.d(
                 "SJSJJDJDJD",
                 "getOperatorsName: ${subscriptionInfoData[j].carrierName}"
@@ -275,4 +279,12 @@ fun getCurrentLang(data: LanguageModel): String = when (App.sharedPreference.lan
     "ru" -> data.ru
     "uz" -> data.uz
     else -> data.en
+}
+
+fun <T> objectToJson(data: T): String {
+    return Gson().toJson(data)
+}
+
+inline fun <reified T> jsonToObject(data: String): T {
+    return Gson().fromJson(data, T::class.java)
 }

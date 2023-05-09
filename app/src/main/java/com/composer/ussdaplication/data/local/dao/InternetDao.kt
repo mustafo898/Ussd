@@ -3,8 +3,6 @@ package com.composer.ussdaplication.data.local.dao
 import androidx.room.*
 import com.composer.ussdaplication.data.local.models.internet.GetInternetDb
 import com.composer.ussdaplication.data.local.models.internet.GetInternetTypeDb
-import com.composer.ussdaplication.data.remote.dto.internet.GetInternetDto
-import com.composer.ussdaplication.data.remote.dto.internet.GetInternetTypeDto
 
 @Dao
 interface InternetDao {
@@ -12,9 +10,9 @@ interface InternetDao {
     /**  INTERNET type CRUD */
 
     @Query("SELECT * FROM internetTypeDb WHERE company = :company")
-    fun getInternetType(company: String): List<GetInternetTypeDb>
+    suspend fun getInternetType(company: String): List<GetInternetTypeDb>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert()
     fun setInternetType(users: List<GetInternetTypeDb>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -23,8 +21,8 @@ interface InternetDao {
     @Delete
     fun deleteInternetType(user: GetInternetTypeDb)
 
-    @Query("DELETE FROM internetTypeDb")
-    fun deleteAllInternetType()
+    @Query("DELETE FROM internetTypeDb WHERE company = :company")
+    fun deleteAllInternetType(company:String)
 
     /**  INTERNET type CRUD */
 
@@ -44,6 +42,9 @@ interface InternetDao {
 
     @Query("DELETE FROM internet")
     fun deleteAllInternet()
+
+    @Query("DELETE FROM internet WHERE typeId = :typeId AND company = :company")
+    fun deleteAllInternet(typeId: String, company:String)
 
     /**  INTERNET type CRUD */
 }
