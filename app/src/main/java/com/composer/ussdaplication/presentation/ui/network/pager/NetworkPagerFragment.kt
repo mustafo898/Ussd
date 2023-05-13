@@ -87,14 +87,5 @@ class NetworkPagerFragment :
                 adapter.setList(p)
             }
         }
-
-//        viewModel.getInternetDb(
-//            id, App.sharedPreference.operator.lowercase()
-//        ).collectLatest {
-//            it.data?.let { p ->
-//                Log.d("dsfsdfsdf_db", "getInternet: $p")
-//                adapter.setList(p)
-//            }
-//        }
     }
 }

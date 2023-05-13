@@ -49,7 +49,7 @@ class SmsPagerFragment : BaseFragment<FragmentSmsPagerBinding>(FragmentSmsPagerB
 
         var code = ""
 
-        binding.card.strokeColor = getColor(App.sharedPreference.operatorColor)
+        binding.card.strokeColor = App.sharedPreference.operatorColor
 
         adapter.setItemClickListener { it, enable ->
             dialog.setTitle(enable)

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "360414078208",
+    "project_id": "ussd-aplication",
+    "storage_bucket": "ussd-aplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360414078208:android:dc5623efd34024f90effe5",
+        "android_client_info": {
+          "package_name": "com.composer.ussdaplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360414078208-udineu3049q0equ3e130gq7qggf7f35u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfNia7V7Qjvff2_ggWvUhGcek9ZqiybfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360414078208-udineu3049q0equ3e130gq7qggf7f35u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
